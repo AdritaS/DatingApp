@@ -1,0 +1,10 @@
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp2.0\DatingApp.API.deps.json
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp2.0\DatingApp.API.runtimeconfig.json
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp2.0\DatingApp.API.runtimeconfig.dev.json
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp2.0\DatingApp.API.dll
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp2.0\DatingApp.API.pdb
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp2.0\DatingApp.API.csproj.CoreCompileInputs.cache
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp2.0\DatingApp.API.AssemblyInfoInputs.cache
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp2.0\DatingApp.API.AssemblyInfo.cs
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp2.0\DatingApp.API.dll
+D:\Adrita\AdritaProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp2.0\DatingApp.API.pdb
