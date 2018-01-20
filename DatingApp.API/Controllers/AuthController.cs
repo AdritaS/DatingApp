@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
@@ -39,6 +40,19 @@ namespace DatingApp.API.Controllers
             var createUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
             return StatusCode(201);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserForRegisterDto userForRegisterDto)
+        {
+            var userFromRepo = _repo.Login(userForRegisterDto.Username,userForRegisterDto.Password);
+
+            if(userFromRepo == null)
+                return Unauthorized();
+
+
+            var tokenHandler = new JwtSecurityTokenHandler();    
+            return Unauthorized();
         }
     }
 }
