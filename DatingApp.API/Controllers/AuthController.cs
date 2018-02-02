@@ -1,9 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DatingApp.API.Controllers
 {
@@ -45,14 +48,29 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserForRegisterDto userForRegisterDto)
         {
-            var userFromRepo = _repo.Login(userForRegisterDto.Username,userForRegisterDto.Password);
+            var userFromRepo = _repo.Login(userForRegisterDto.Username.ToLower(),userForRegisterDto.Password);
 
             if(userFromRepo == null)
                 return Unauthorized();
 
 
             var tokenHandler = new JwtSecurityTokenHandler();    
-            return Unauthorized();
+            var key = Encoding.ASCII.GetBytes("secret key");
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity( new Claim[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier,userFromRepo.Id.ToString()),
+                    new Claim(ClaimTypes.Name,userFromRepo.Id.ToString())
+                }),
+                Expires = System.DateTime.Now.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha512Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            return Ok(new{tokenString});
         }
     }
 }
