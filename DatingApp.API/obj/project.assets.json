@@ -12541,11 +12541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Adrita\\AdritaProjects\\DatingApp\\DatingApp.API\\DatingApp.API.csproj",
+      "projectUniqueName": "D:\\Adrita\\AdritaProjects\\DatingApp\\DatingApp.API\\DatingApp.API.csproj",
       "projectName": "DatingApp.API",
-      "projectPath": "d:\\Adrita\\AdritaProjects\\DatingApp\\DatingApp.API\\DatingApp.API.csproj",
+      "projectPath": "D:\\Adrita\\AdritaProjects\\DatingApp\\DatingApp.API\\DatingApp.API.csproj",
       "packagesPath": "C:\\Users\\Adrita\\.nuget\\packages\\",
-      "outputPath": "d:\\Adrita\\AdritaProjects\\DatingApp\\DatingApp.API\\obj\\",
+      "outputPath": "D:\\Adrita\\AdritaProjects\\DatingApp\\DatingApp.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
