@@ -9,7 +9,12 @@ export class NavComponent implements OnInit {
 
   constructor() { }
 
+  model : any = {}
+
   ngOnInit() {
   }
 
+
+  login () {
+  }
 }
