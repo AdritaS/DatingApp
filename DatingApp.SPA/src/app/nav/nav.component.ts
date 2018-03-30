@@ -16,5 +16,6 @@ export class NavComponent implements OnInit {
 
 
   login () {
+    console.log(this.model)
   }
 }
