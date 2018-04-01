@@ -21,6 +21,7 @@ export class AuthService {
 
            this.userToken = user.userToken
               console.log(user)
+              localStorage.setItem('userToken', this.userToken);
             })
     }
 
