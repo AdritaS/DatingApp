@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
@@ -22,11 +25,30 @@ export class AuthService {
     }
 
     register(model: any) {
-        return this.http.post(this.baseUrl + "register", model, this.requestOptions())
+        return this.http.post(this.baseUrl + "register", model, this.requestOptions()).catch(this.handleError)
     }
     private requestOptions() {
         const headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
         return new RequestOptions({ headers: headers });
+    }
+    private handleError(error : any) {
+        const applicationError = error.headers.get('Application-Error')
+        if(applicationError) {
+            return Observable.throw(applicationError);
+            
+        }
+        const serverError = error.json();
+
+        let modelStateError = ''
+
+        if(serverError) {
+            for(const key in serverError) {
+                if(serverError[key]) {
+                    modelStateError += serverError[key] + '\n';
+                }
+            }
+        }
+        return Observable.throw(modelStateError || 'Server Error');
     }
 
 }

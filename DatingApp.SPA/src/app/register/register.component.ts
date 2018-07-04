@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
         console.log("Success")
 
       }, error => {
-        console.log("Failed")
+        console.log(error)
       }
     )
   }
