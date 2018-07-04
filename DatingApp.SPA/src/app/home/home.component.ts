@@ -7,22 +7,25 @@ import { Http } from '@angular/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  registerMode : boolean = false;
+  registerMode: boolean = false;
   values: any;
-  
+
   constructor(private http: Http) { }
 
   ngOnInit() {
     this.getValues()
   }
   registerToggle() {
-    this.registerMode = !this.registerMode;
+    this.registerMode = true;
   }
   getValues() {
     this.http.get('http://localhost:5000/api/values').subscribe(response => {
       console.log(response)
       this.values = response.json()
     });
+  }
+  cancelRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode
   }
 
 }
