@@ -9,20 +9,22 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-
+import { BsDropdownModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
     ValueComponent
 ,
-    NavComponent,
+    NavComponent
+,
     HomeComponent,
     RegisterComponent
 ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
     AuthService
