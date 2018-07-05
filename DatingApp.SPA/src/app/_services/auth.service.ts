@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
 import { Observable } from 'rxjs/Observable';
-
+import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
@@ -27,23 +27,26 @@ export class AuthService {
     register(model: any) {
         return this.http.post(this.baseUrl + "register", model, this.requestOptions()).catch(this.handleError)
     }
+    loggedIn() {
+        return tokenNotExpired('token')
+    }
     private requestOptions() {
         const headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
         return new RequestOptions({ headers: headers });
     }
-    private handleError(error : any) {
+    private handleError(error: any) {
         const applicationError = error.headers.get('Application-Error')
-        if(applicationError) {
+        if (applicationError) {
             return Observable.throw(applicationError);
-            
+
         }
         const serverError = error.json();
 
         let modelStateError = ''
 
-        if(serverError) {
-            for(const key in serverError) {
-                if(serverError[key]) {
+        if (serverError) {
+            for (const key in serverError) {
+                if (serverError[key]) {
                     modelStateError += serverError[key] + '\n';
                 }
             }
