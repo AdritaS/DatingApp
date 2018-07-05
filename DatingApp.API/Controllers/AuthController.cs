@@ -68,7 +68,7 @@ namespace DatingApp.API.Controllers
                     new Claim(ClaimTypes.NameIdentifier,userFromRepo.Id.ToString()),
                     new Claim(ClaimTypes.Name,userFromRepo.UserName)
                 }),
-                Expires = System.DateTime.Now.AddDays(1),
+                Expires = System.DateTime.Now.AddDays(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
