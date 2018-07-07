@@ -35,6 +35,10 @@ export class AuthService {
     loggedIn() {
         return tokenNotExpired('token')
     }
+    loggedIn1() {
+        const token = localStorage.getItem('userToken');
+        return !!token;
+    }
     private requestOptions() {
         const headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
         return new RequestOptions({ headers: headers });

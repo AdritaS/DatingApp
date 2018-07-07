@@ -15,30 +15,31 @@ import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
     ValueComponent
-,
+    ,
     NavComponent
-,
+    ,
     HomeComponent,
     RegisterComponent
-,
+    ,
     MemberListComponent,
     ListComponent,
     MessagesComponent
-],
+  ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes)
-    
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
