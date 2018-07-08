@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/user';
-import { UserService } from '../_services/user.service';
+import { User } from '../../_models/user';
+import { UserService } from '../../_services/user.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -24,6 +24,7 @@ export class MemberListComponent implements OnInit {
     this.userService.getUsers().subscribe(data => {
       this.users = data['users'];
       console.log(data)
+      this.users = data
     });
   }
 }
