@@ -11,7 +11,7 @@ export class AuthService {
 
     baseUrl = "http://localhost:5000/api/auth/"
     userToken: any
-    decodedToken : any
+    decodedToken: any
     jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(private http: Http) { }
@@ -22,10 +22,10 @@ export class AuthService {
             const user = response.json()
             this.userToken = user.tokenString
             console.log(user)
+            localStorage.setItem('token', user.tokenString);
             localStorage.setItem('userToken', user.tokenString);
             this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
             console.log(this.decodedToken);
-
         })
     }
 
