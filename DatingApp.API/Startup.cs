@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -34,8 +35,13 @@ namespace DatingApp.API
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
 
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddCors();
+            services.AddAutoMapper();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(option =>
                 {
@@ -49,6 +55,8 @@ namespace DatingApp.API
                 });
 
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,13 +68,16 @@ namespace DatingApp.API
             }
             else
             {
-                app.UseExceptionHandler(builder => {
-                    builder.Run(async context => {
+                app.UseExceptionHandler(builder =>
+                {
+                    builder.Run(async context =>
+                    {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         var error = context.Features.Get<IExceptionHandlerFeature>();
 
-                        if(error != null) {
-                           await context.Response.WriteAsync(error.Error.Message); 
+                        if (error != null)
+                        {
+                            await context.Response.WriteAsync(error.Error.Message);
                         }
                     });
                 });
